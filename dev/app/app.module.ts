@@ -10,6 +10,7 @@ import { BillService } from './bills/bill.service';
 import { HomeComponent } from './home/home.component';
 import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { TopbarComponent } from './shared/topbar/topbar.component';
+import { BillRowFilterPipe } from './bills/bill-filter.pipe';
 
 @NgModule({
   imports: [ 
@@ -24,7 +25,8 @@ import { TopbarComponent } from './shared/topbar/topbar.component';
   declarations: [ AppComponent, 
                   HomeComponent,
                   SidenavComponent, 
-                  TopbarComponent
+                  TopbarComponent,
+                  BillRowFilterPipe
                  ],
   providers: [ BillService ],
   bootstrap: [ AppComponent ],

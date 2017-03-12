@@ -11,6 +11,7 @@ import { BillService } from '../bills/bill.service';
 export class HomeComponent implements OnInit {
 
     billArray : IBill[]; 
+    listFilter : string = '';
 
     constructor(private _billService : BillService) {
 
