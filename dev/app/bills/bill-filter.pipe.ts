@@ -1,4 +1,5 @@
-import { PipeTransfor, Pipe } from '@angular/core';
+import { PipeTransform, Pipe } from '@angular/core';
+import { IBill } from './bill';
 
 @Pipe({
     name : 'billFilter'
