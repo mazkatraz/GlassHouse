@@ -1,3 +1,6 @@
+/**
+ * Translates bill statuses to bootstrap labels for color
+ */
 export class BillStatusColors {
     prov_kill_veto : string = "label-danger";
     fail_second_senate : string = "label-danger";

@@ -11,31 +11,52 @@ export class BillService {
 
     constructor(private http: Http) {}
 
+    /**
+     * Gets bill from most recent to least recent.
+     * @return {Observable<any>} sum
+    */
     getRecentsFirst() : Observable<any> {
+
+        //Construct search parameters
         let params = new URLSearchParams();
         params.set('congress', '114');
         params.set('order_by', '-current_status_date');
 
+        //Attach search parameters to API call return a parsed JSON object
         return this.http.get("https://www.govtrack.us/api/v2/bill", {
             search: params
         }).map(res => res.json());
     }
 
+    /**
+     * Converts a json string to an IBill Interface Obejct
+     * @param {string} json
+     * @return {IBill}
+     */
     jsonToIBill(json : string) : IBill {
 
+        //Converts string to JSON object
         var jsonObject = JSON.parse(json);
+
+        //Initialize return object
         var returnObject : IBill = this.newBill();
         
+        //Initialize properties in return object from json object
         for (var propName in jsonObject) {       
             returnObject[propName] = jsonObject[propName]
         }
 
+        //Set the bill status color
         returnObject.bill_status_color = this.getBillStatusColor(jsonObject.current_status);
-        console.log("Color: " + returnObject.bill_status_color);
+        //console.log("Color: " + returnObject.bill_status_color);
 
         return returnObject;
     }
 
+    /**
+     * Returns an empty IBill interface object
+     * @return {IBill}
+     */
     newBill() : IBill {
         return {
             id: 0,
@@ -56,10 +77,20 @@ export class BillService {
         }
     }
 
+    /**
+     * Prints out an error message for debugging
+     * @param {string} method
+     * @param {any} error     
+     */
     private error ( method: string, error : any) : void {
         console.log("An error has occurred for " + method + ": " + error);
     }
 
+    /**
+     * Returns the boostrap color attribute for display depending on input
+     * @param {string} status
+     * @return {string}
+     */
     private getBillStatusColor(status : string) : string{
         switch(status){
             case "prov_kill_veto" :

@@ -1,5 +1,8 @@
 import { Official } from '../official/official'
 
+/**
+ * Bill interface object
+ */
 export interface IBill{
     id: number;
     bill_resolution_type : string;

@@ -31,7 +31,8 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>                                       
+                    <tbody> 
+                        <!-- An external template for the bills were attempted, however there were problems updating the template when it came to the bill color -->                                      
                         <tr *ngFor="let bill of billArray | billFilter : listFilter">
                             <td>{{bill.title_without_number}}</td>
                             <td class="hidden-phone">{{bill.current_status_description}}</td>
